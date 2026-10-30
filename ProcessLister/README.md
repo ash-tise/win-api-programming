@@ -47,6 +47,6 @@ PID        PPID       Threads    Executable Name                Full Path
 
 **Initializing `dwSize`:** `dwSize` must be set to `sizeof(PROCESSENTRY32W)` before the first call or else `Process32FirstW` fails.
 
-**OpenProcess:** If a request is denied when calling `OpenProcess` the entire call fails. Requesting only `PROCESS_QUERY_LIMITED_INFORMATION` lets the tool get paths for more processes including some that are more protected.
+**OpenProcess:** If a request is denied when calling `OpenProcess` the entire call fails. Requesting `PROCESS_QUERY_LIMITED_INFORMATION` lets the tool get paths for more processes including some that are more protected.
 
 **Always leave the buffer valid:** On failure, `GetImagePath` writes a marker such as `<access denied>` into the buffer. If this weren't the case, `main` would print uninitialized stack memory in the path column.
