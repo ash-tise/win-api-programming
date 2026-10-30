@@ -22,7 +22,7 @@ Each tool is checked against an established reference tool (Task Manager, System
 2. Set the platform to **x64** and choose **Debug** or **Release**
 3. **Build → Build Solution** (Ctrl+Shift+B)
 
-**From the command line** (x64 Native Tools Command Prompt for VS):
+**From the command line:**
 
 ```
 msbuild win-api-programming.slnx /p:Configuration=Release /p:Platform=x64
