@@ -2,6 +2,38 @@
 #include <TlHelp32.h>
 #include <stdio.h>
 
+static BOOL GetImagePath(DWORD pid, WCHAR* buf, DWORD cchbuf) {
+	// get process handle
+	HANDLE hProcess = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
+	if (hProcess == NULL) {
+		DWORD err = GetLastError();
+		if (err == ERROR_ACCESS_DENIED) {
+			swprintf_s(buf, cchbuf, L"<access denied>");
+		}
+		else {
+			swprintf_s(buf, cchbuf, L"<error>: %lu", err);
+		}
+		return FALSE;
+	}
+
+	DWORD cch = cchbuf;
+
+	// grab full path to the executable
+	if (!QueryFullProcessImageNameW(hProcess, 0, buf, &cch)) {
+		DWORD err = GetLastError();
+		if (err == ERROR_ACCESS_DENIED) {
+			swprintf_s(buf, cchbuf, L"<access denied>");
+		}
+		else {
+			swprintf_s(buf, cchbuf, L"<error>: %lu", err);
+		}
+		CloseHandle(hProcess);
+		return FALSE;
+	}
+	CloseHandle(hProcess);
+	return TRUE;
+}
+
 int main() {
 
 	int status = 0;
@@ -25,12 +57,16 @@ int main() {
 	}
 
 	// print header information
-	printf("%-10s %-10s %-10s %s\n", "PID", "PPID", "Threads", "Executable Name");
-	printf("%-10s %-10s %-10s %s\n", "----", "-----", "-------", "---------------");
+	printf("%-10s %-10s %-10s %-30s %s\n", "PID", "PPID", "Threads", "Executable Name", "Full Path");
+	printf("%-10s %-10s %-10s %-30s %s\n", "----", "-----", "-------", "---------------", "---------");
 
 	// list out each process in the snapshot
 	do {
-		printf("%-10lu %-10lu %-10lu %ls\n", pe32.th32ProcessID, pe32.th32ParentProcessID, pe32.cntThreads, pe32.szExeFile);
+
+		WCHAR path[MAX_PATH];
+		GetImagePath(pe32.th32ProcessID, path, _countof(path));
+		printf("%-10lu %-10lu %-10lu %-30ls %ls\n", pe32.th32ProcessID, pe32.th32ParentProcessID, pe32.cntThreads, pe32.szExeFile, path);
+	
 	} while (Process32NextW(hSnapshot, &pe32));
 
 	// error check

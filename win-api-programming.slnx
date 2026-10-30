@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="ProcessLister/ProcessLister.vcxproj" />
+  <Project Path="ProcessLister/ProcessLister.vcxproj" Id="2eb1e0c2-de5b-4e89-b3a4-db6d96239271" />
 </Solution>
