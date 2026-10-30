@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Users\ash\Desktop\process_lister.c">
+    <ClCompile Include="process_lister.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
