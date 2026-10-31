@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="IATHooking/IATHooking.vcxproj" Id="6b258e03-2237-4619-a114-62d1c9519cc4" />
   <Project Path="ProcessLister/ProcessLister.vcxproj" Id="2eb1e0c2-de5b-4e89-b3a4-db6d96239271" />
 </Solution>
