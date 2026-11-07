@@ -8,9 +8,9 @@ This code is based on the [ired.team IAT hooking walkthrough](https://www.ired.t
 
 The program shows three message boxes:
 
-1. **"Before IAT Hooking"**: a normal call to the function, before the hook exists.
+1. **"Before IAT Hooking"**: a normal call to the function before the hook exists.
 2. **"Get Hooked!"**: shown by the hook function when the hooked call is made.
-3. **"After IAT Hooking"**: the original call, passed through by the hook to the real `MessageBoxW`.
+3. **"After IAT Hooking"**: the original call that's passed through by the hook to the real `MessageBoxW`.
 
 `main` calls `MessageBoxW` the same way before and after hooking. What changes is the address stored in the IAT slot.
 
