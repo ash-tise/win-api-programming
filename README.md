@@ -1,8 +1,6 @@
-A collection of tools written in C using the Win32 API. The goal is to better understand Windows internals regarding processes, handles, tokens, memory, as well how APIs work with them.
-
 # win-api-programming
 
-Small Windows tools written in C against the Win32 API, built to learn how Windows works under the hood: processes, handles, memory, tokens, and the APIs that expose them.
+A collection of tools written in C using the Win32 API. The goal is to better understand Windows internals regarding processes, handles, tokens, memory, as well how APIs work with them.
 
 Each tool is checked against an established reference tool (Task Manager, System Informer, WinDbg, Sysinternals) to confirm its output is correct.
 
